@@ -1,22 +1,9 @@
-input{
+input, select{
     margin-bottom: 10px;
 }
-
 
 .explosao{
     width: 100%;
     position: absolute;
     top: -80px;
 }
-
-:root{
-    --corPrimaria:#fff;
-    --corSegundaria:#000;
-}
-
-.darkmode{
-    --corPrimaria:#000;
-    --corSegundaria:#fff;
-}
-
-

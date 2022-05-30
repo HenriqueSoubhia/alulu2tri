@@ -7,7 +7,6 @@ const modelo = mongoose.Schema({
     disciplina: String,
     instrucoes: String,
     usuario : String,
-    enviado: { type: Date, default: Date.now }
 })
 
 const atividades = mongoose.model('atividades', modelo)

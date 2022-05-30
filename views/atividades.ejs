@@ -21,18 +21,44 @@
                 <h3 class="text-center">Cadastrar</h3>
                 <form action="/atividades" method="POST" class="form-control">
                     <input type="hidden" name="id" value="<%=id%>">
-                    <label  for="nome" class="form-control">Titulo da Atividade</label>
-                    <input type="text" name="nome" class="form-control">
+                    <input type="hidden" name="nome" value="<%=nome%>">
+
+                    <label for="nome" class="form-control">Titulo da Atividade</label>
+                    <input type="text" name="titulo" class="form-control">
+
                     <label for="data" class="form-control">Data de entrega:</label>
-                    <input  type="date" name="data" class="form-control">
+                    <input type="date" name="data" class="form-control">
+
+                    <label for="disciplina" class="form-control">Disciplica</label>
+                    <select name="disciplina" class="form-control">
+                        <option value="0">Selecione...</option>
+                        <option value="bio">Biologia</option>
+                        <option value="lp2">Linguagem de Programação</option>
+                        <option value="bd2">Banco de dados</option>
+                        <option value="inw">Internet Web</option>
+                    </select>
+
                     <label for="tipo" class="form-control">Tipo:</label>
-                    <select  name="tipo" class="form-control">
+                    <select name="tipo" class="form-control">
                         <option value="0">Selecione...</option>
                         <option value="ac">AC</option>
                         <option value="at">AT</option>
                         <option value="rec">REC</option>
                         <option value="exame">exame</option>
                     </select>
+
+                    <label for="" class="form-control">Formato de Entrega</label>
+                    <div>
+                        <input type="radio" name="entrega" value="Teams" class="form-check-input" value="">Tafera No
+                        Teams
+                        <input type="radio" name="entrega" value="Chat" class="form-check-input" value="">Chat No Teams
+                        <input type="radio" name="entrega" value="Formulario" class="form-check-input">Forms
+                        <input type="radio" name="entrega" value="Email" class="form-check-input">Email
+                        <input type="radio" name="entrega" value="Apresentacao" class="form-check-input">Apresentação
+                    </div>
+                    
+                    <label class="form-control">Orientações</label>
+                    <textarea name="orientacoes" class="form-control"></textarea>
                     <input type="submit" value="Gravar" class="form-control btn btn-primary">
                 </form>
             </div>
