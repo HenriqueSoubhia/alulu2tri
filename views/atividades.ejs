@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Lista de Atividade</h1>
+        <h1 class="text-center" id="h1">Lista de Atividade</h1>
         <h2 class="text-center"><%=nome%></h2>
         <a href="/login" class="btn btn-outline-primary">Voltar</a>
         <div class="row">
@@ -23,13 +23,13 @@
                     <input type="hidden" name="id" value="<%=id%>">
                     <input type="hidden" name="nome" value="<%=nome%>">
 
-                    <label for="nome" class="form-control">Titulo da Atividade</label>
+                    <label for="nome" class="form-control bg-gradient-sopa">Titulo da Atividade</label>
                     <input type="text" name="titulo" class="form-control">
 
-                    <label for="data" class="form-control">Data de entrega:</label>
+                    <label for="data" class="form-control bg-gradient-sopa">Data de entrega:</label>
                     <input type="date" name="data" class="form-control">
 
-                    <label for="disciplina" class="form-control">Disciplica</label>
+                    <label for="disciplina" class="form-control bg-gradient-sopa">Disciplica</label>
                     <select name="disciplina" class="form-control">
                         <option value="0">Selecione...</option>
                         <option value="bio">Biologia</option>
@@ -38,7 +38,7 @@
                         <option value="inw">Internet Web</option>
                     </select>
 
-                    <label for="tipo" class="form-control">Tipo:</label>
+                    <label for="tipo" class="form-control bg-gradient-sopa">Tipo:</label>
                     <select name="tipo" class="form-control">
                         <option value="0">Selecione...</option>
                         <option value="ac">AC</option>
@@ -47,7 +47,7 @@
                         <option value="exame">exame</option>
                     </select>
 
-                    <label for="" class="form-control">Formato de Entrega</label>
+                    <label for="" class="form-control bg-gradient-sopa">Formato de Entrega</label>
                     <div>
                         <input type="radio" name="entrega" value="Teams" class="form-check-input" value="">Tafera No
                         Teams
@@ -57,16 +57,43 @@
                         <input type="radio" name="entrega" value="Apresentacao" class="form-check-input">Apresentação
                     </div>
                     
-                    <label class="form-control">Orientações</label>
+                    <label class="form-control bg-gradient-sopa">Orientações</label>
                     <textarea name="orientacoes" class="form-control"></textarea>
                     <input type="submit" value="Gravar" class="form-control btn btn-primary">
                 </form>
             </div>
             <div class="col-md">
                 <h3 class="text-center">Listar</h3>
+
+                <div class="card">
+                    <div class="card-header"><%=lista[0].data%></div>
+                    <div class="card-body">
+                        <div class="card-title">Título</div>
+                        <div class="card-subtitle">Entrega</div>
+                        <div class="card-subtitle">Disciplina</div>
+                        <div class="card-subtitle">Tipos</div>
+                        <div class="card-text">Instruções</div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group"">
+                            <a href="#" class="btn btn-success">Entregue</a>
+                            <a href="#" class="btn btn-warning">Alterar</a>
+                            <a href="#" class="btn btn-danger">Excluir</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        let h1 = document.querySelector("#h1")
+        let body = document.querySelector("body")
+
+        h1.addEventListener("click",()=>{
+            body.classList.toggle("darkmode")
+        })
+
+    </script>
 </body>
 
 </html>

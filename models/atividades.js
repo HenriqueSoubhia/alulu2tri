@@ -3,10 +3,11 @@ const mongoose = require('mongoose')
 const modelo = mongoose.Schema({
     data: Date,
     tipo: String,
+    titulo: String,
     entrega: String,
     disciplina: String,
     instrucoes: String,
-    usuario : String,
+    usuario : String
 })
 
 const atividades = mongoose.model('atividades', modelo)

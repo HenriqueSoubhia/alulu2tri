@@ -13,12 +13,21 @@ module.exports = (app) => {
         let gravar = await new atividades({
             data: dados.data,
             tipo: dados.tipo,
+            entrega: dados.entrega,
             disciplina: dados.disciplina,
             intrucoes: dados.orientacoes,
-            usuario: dados.id
+            usuario: dados.id,
+            titulo: dados.titulo
         }).save()
+        //buscar as atividades do usuario
+        let buscar = await atividades.find({ usuario: dados.id })
+
         //recarrega a página atividades
-        res.render('atividades.ejs',{nome:dados.nome,id:dados.id})
+        res.render('atividades.ejs', {
+            nome: dados.nome,
+            id: dados.id,
+            lista: buscar
+        })
     }
     )
 }
