@@ -36,3 +36,10 @@ body{
     color: var(--secundaryColor);
     border: 1px solid #ced4da;
 }
+
+
+.listar{
+    overflow: scroll;
+    max-height: 600px;
+    overflow-x: hidden;
+}

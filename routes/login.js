@@ -27,7 +27,16 @@ module.exports = (app) => {
         if (!comparar) {
             return res.send("senha errda parca")
         }
-        res.render("atividades.ejs", { nome: verificar.nome, id: verificar._id })
+
+        const atividades = require("../models/atividades")
+
+        let buscar = await atividades.find({ usuario: verificar._id })
+
+        res.render("atividades.ejs", {
+            lista: buscar,
+            nome: verificar.nome,
+            id: verificar._id
+        })
 
     })
 }

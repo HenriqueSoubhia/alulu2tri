@@ -10,15 +10,17 @@ module.exports = (app) => {
         const atividades = require("../models/atividades")
 
         //gravar as infomações do formulario no database
+
         let gravar = await new atividades({
             data: dados.data,
             tipo: dados.tipo,
             entrega: dados.entrega,
             disciplina: dados.disciplina,
-            intrucoes: dados.orientacoes,
+            instrucoes: dados.orientacoes,
             usuario: dados.id,
             titulo: dados.titulo
         }).save()
+
         //buscar as atividades do usuario
         let buscar = await atividades.find({ usuario: dados.id })
 

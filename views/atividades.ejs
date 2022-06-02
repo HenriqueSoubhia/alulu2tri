@@ -14,7 +14,9 @@
 <body>
     <div class="container">
         <h1 class="text-center" id="h1">Lista de Atividade</h1>
-        <h2 class="text-center"><%=nome%></h2>
+        <h2 class="text-center">
+            <%=nome%>
+        </h2>
         <a href="/login" class="btn btn-outline-primary">Voltar</a>
         <div class="row">
             <div class="col-md">
@@ -56,7 +58,7 @@
                         <input type="radio" name="entrega" value="Email" class="form-check-input">Email
                         <input type="radio" name="entrega" value="Apresentacao" class="form-check-input">Apresentação
                     </div>
-                    
+
                     <label class="form-control bg-gradient-sopa">Orientações</label>
                     <textarea name="orientacoes" class="form-control"></textarea>
                     <input type="submit" value="Gravar" class="form-control btn btn-primary">
@@ -64,23 +66,38 @@
             </div>
             <div class="col-md">
                 <h3 class="text-center">Listar</h3>
-
-                <div class="card">
-                    <div class="card-header"><%=lista[0].data%></div>
-                    <div class="card-body">
-                        <div class="card-title">Título</div>
-                        <div class="card-subtitle">Entrega</div>
-                        <div class="card-subtitle">Disciplina</div>
-                        <div class="card-subtitle">Tipos</div>
-                        <div class="card-text">Instruções</div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="input-group"">
-                            <a href="#" class="btn btn-success">Entregue</a>
-                            <a href="#" class="btn btn-warning">Alterar</a>
-                            <a href="#" class="btn btn-danger">Excluir</a>
+                <div class="listar">
+                    <% for(let n=0;n < lista.length;n++){%>
+                        <div class="card">
+                            <div class="card-header">
+                                <%=lista[n].data%>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <%=lista[n].titulo%>
+                                </div>
+                                <div class="card-subtitle">
+                                    <%=lista[n].entrega%>
+                                </div>
+                                <div class="card-subtitle">
+                                    <%=lista[n].disciplina%>
+                                </div>
+                                <div class="card-subtitle">
+                                    <%=lista[n].tipo%>
+                                </div>
+                                <div class="card-text">
+                                    <%=lista[n].instrucoes%>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="input-group"">
+                                <a href=" #" class="btn btn-success">Entregue</a>
+                                    <a href="#" class="btn btn-warning">Alterar</a>
+                                    <a href="#" class="btn btn-danger">Excluir</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <%}%>
                 </div>
             </div>
         </div>
@@ -89,7 +106,7 @@
         let h1 = document.querySelector("#h1")
         let body = document.querySelector("body")
 
-        h1.addEventListener("click",()=>{
+        h1.addEventListener("click", () => {
             body.classList.toggle("darkmode")
         })
 
