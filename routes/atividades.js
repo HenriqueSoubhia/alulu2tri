@@ -1,3 +1,5 @@
+const atividades = require("../models/atividades")
+
 module.exports = (app) => {
     app.post('/atividades', async (req, res) => {
         let dados = req.body
@@ -21,15 +23,39 @@ module.exports = (app) => {
             titulo: dados.titulo
         }).save()
 
-        //buscar as atividades do usuario
-        let buscar = await atividades.find({ usuario: dados.id })
+        //recarregar a pagina atividades
+        res.redirect('/atividades?id=' + dados.id)
 
-        //recarrega a página atividades
+    })
+    app.get('/atividades', async (req, res) => {
+        //listar todas as atividades do usuario logado
+        var user = req.query.id
+        if(!user){
+            res.redirect("/login")
+        }
+        var usuarios = require('../models/usuario')
+        var atividades = require("../models/atividades")
+
+        var dadosUser = await usuarios.findOne({ _id: user })
+        var dadosAtividades = await atividades.find({ usuarios: user })
+
         res.render('atividades.ejs', {
-            nome: dados.nome,
-            id: dados.id,
-            lista: buscar
+            nome: dadosUser.nome,
+            id: dadosUser._id,
+            lista: dadosAtividades
         })
-    }
-    )
+    })
+
+    app.get('/excluir',async(req,res)=>{
+        //qual documento será excluido da collection atividades?
+        var doc = req.query.id
+
+        //excluir o documento
+        var excluir = await atividades.findByIdAndDelete({
+            _id:doc
+        })
+
+        //voltar para a lista de atividades
+        res.redirect("/atividades?id="+excluir.usuario)
+    })
 }

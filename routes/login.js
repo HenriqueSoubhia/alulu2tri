@@ -28,15 +28,7 @@ module.exports = (app) => {
             return res.send("senha errda parca")
         }
 
-        const atividades = require("../models/atividades")
-
-        let buscar = await atividades.find({ usuario: verificar._id })
-
-        res.render("atividades.ejs", {
-            lista: buscar,
-            nome: verificar.nome,
-            id: verificar._id
-        })
-
+        //redirecionar para a tora atividads(precisa enviar o id)
+        res.redirect('/atividades?id='+verificar._id)
     })
-}
+}   
