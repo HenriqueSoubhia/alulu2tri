@@ -1,3 +1,7 @@
+*{
+    font-family: cursive;
+}
+
 input, select{
     margin: 10px 0;
 }
@@ -36,7 +40,6 @@ body{
     color: var(--secundaryColor);
     border: 1px solid #ced4da;
 }
-
 
 .listar{
     overflow-y: scroll;

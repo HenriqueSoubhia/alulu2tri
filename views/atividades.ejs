@@ -73,17 +73,18 @@
                     <% for(let n=0;n < lista.length;n++){%>
                         <div class="card">
                             <div class="card-header">
-                                <%=lista[n].data%>
+                                Data de entrega:
+                                <%=lista[n].data.getDate()+1%>/<%=lista[n].data.getMonth()%>/<%=lista[n].data.getFullYear()%>
                             </div>
                             <div class="card-body">
                                 <div class="card-title">
-                                    <%=lista[n].titulo%>
+                                Titulo: <%=lista[n].titulo%>
                                 </div>
                                 <div class="card-subtitle">
-                                    <%=lista[n].entrega%>
+                                Entrega: <%=lista[n].entrega%>
                                 </div>
                                 <div class="card-subtitle">
-                                    <%=lista[n].disciplina%>
+                                Disciplina: <%=lista[n].disciplina%>
                                 </div>
                                 <div class="card-subtitle">
                                     <%=lista[n].tipo%>
