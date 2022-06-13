@@ -8,7 +8,7 @@ const modelo = mongoose.Schema({
     disciplina: String,
     instrucoes: String,
     usuario: String,
-    status: { type: Boolean, default: 0 }
+    status: { type: String, default: 0 }
 })
 
 const atividades = mongoose.model('atividades', modelo)
