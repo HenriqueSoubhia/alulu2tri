@@ -76,7 +76,7 @@ module.exports = (app) => {
         //qual documento será excluido da collection atividades?
         var doc = req.query.id
 
-        //excluir o documento
+        //entrega o documento
         var entregue = await atividades.findByIdAndUpdate(
             {_id:doc},
             {status:"1"}
@@ -84,6 +84,20 @@ module.exports = (app) => {
 
         //voltar para a lista de atividades
         res.redirect("/atividades?id="+entregue.usuario)
+    })
+
+    app.get('/desfazer',async(req,res)=>{
+        //qual documento será excluido da collection atividades?
+        var doc = req.query.id
+
+        //desfaz o documento
+        var desfazer = await atividades.findByIdAndUpdate(
+            {_id:doc},
+            {status:"0"}
+        )
+
+        //voltar para a lista de atividades
+        res.redirect("/atividades?id="+desfazer.usuario)
     })
 
 }
