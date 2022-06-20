@@ -1,4 +1,5 @@
 const atividades = require("../models/atividades")
+const usuario = require("../models/usuario")
 
 module.exports = (app) => {
     app.post('/atividades', async (req, res) => {
@@ -30,7 +31,7 @@ module.exports = (app) => {
     app.get('/atividades', async (req, res) => {
         //listar todas as atividades do usuario logado
         var user = req.query.id
-        if(!user){
+        if (!user) {
             res.redirect("/login")
         }
         var usuarios = require('../models/usuario')
@@ -38,15 +39,15 @@ module.exports = (app) => {
 
         var dadosUser = await usuarios.findOne({ _id: user })
 
-        var dadosAberto = await atividades.find({ usuarios: user,status: "0"}).sort({data:1})
+        var dadosAberto = await atividades.find({ usuarios: user, status: "0" }).sort({ data: 1 })
 
-        var dadosEntregue = await atividades.find({ usuarios: user,status: "1"}).sort({data:1})
+        var dadosEntregue = await atividades.find({ usuarios: user, status: "1" }).sort({ data: 1 })
 
-        var dadosExcluido = await atividades.find({ usuarios: user,status: "2"}).sort({data:1})
+        var dadosExcluido = await atividades.find({ usuarios: user, status: "2" }).sort({ data: 1 })
 
-        res.render('atividades.ejs',{
-            nome:dadosUser.nome,
-            id:dadosUser._id,
+        res.render('atividades.ejs', {
+            nome: dadosUser.nome,
+            id: dadosUser._id,
             dadosAberto,
             dadosEntregue,
             dadosExcluido
@@ -58,46 +59,67 @@ module.exports = (app) => {
         // })
     })
 
-    app.get('/excluir',async(req,res)=>{
+    app.get('/excluir', async (req, res) => {
         //qual documento será excluido da collection atividades?
         var doc = req.query.id
 
         //excluir o documento
-        var excluir = await atividades.findByIdAndUpdate(
-            {_id:doc},
-            {status:"2"}
+        var excluir = await atividades.findOneAndUpdate(
+            { _id: doc },
+            { status: "2" }
         )
 
         //voltar para a lista de atividades
-        res.redirect("/atividades?id="+excluir.usuario)
+        res.redirect("/atividades?id=" + excluir.usuario)
     })
 
-    app.get('/entregue',async(req,res)=>{
+    app.get('/entregue', async (req, res) => {
         //qual documento será excluido da collection atividades?
         var doc = req.query.id
 
         //entrega o documento
-        var entregue = await atividades.findByIdAndUpdate(
-            {_id:doc},
-            {status:"1"}
+        var entregue = await atividades.findOneAndUpdate(
+            { _id: doc },
+            { status: "1" }
         )
 
         //voltar para a lista de atividades
-        res.redirect("/atividades?id="+entregue.usuario)
+        res.redirect("/atividades?id=" + entregue.usuario)
     })
 
-    app.get('/desfazer',async(req,res)=>{
+    app.get('/desfazer', async (req, res) => {
         //qual documento será excluido da collection atividades?
         var doc = req.query.id
 
         //desfaz o documento
-        var desfazer = await atividades.findByIdAndUpdate(
-            {_id:doc},
-            {status:"0"}
+        var desfazer = await atividades.findOneAndUpdate(
+            { _id: doc },
+            { status: "0" }
         )
 
         //voltar para a lista de atividades
-        res.redirect("/atividades?id="+desfazer.usuario)
+        res.redirect("/atividades?id=" + desfazer.usuario)
     })
 
+    //renderizar a view alterar.ejs
+    app.get("/alterar", async (req, res) => {
+        //recuperar o id da dtividade
+        var id = req.query.id
+
+        //procurar o id na collection atividades
+        var alterar = await atividades.findOne({ _id: id })
+
+        //localizar o usuario proprietario da atividades
+        var user = await usuario.findOne({ _id: alterar.usuario })
+
+        //renderizar a view alterar e enviar o nome e id do usuario e todos dados da atividade
+        res.render("alterar.ejs", { nome: user.nome, id: user._id, alterar})
+    })
+
+    //gravar as alterações na atividade selecionada
+    app.post("/alterar",async(req,res)=>{
+        //armazenar as infomações recebidads do formulario
+        var dados = req.body
+
+    })
 }

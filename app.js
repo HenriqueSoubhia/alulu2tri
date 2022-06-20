@@ -15,5 +15,5 @@ const consign = require('consign')
 consign().include('./routes').into(app)
 
 //ligar o servidor
-app.listen(porta)
+app.listen(porta,()=>{console.log("http:/localhost:" + porta)})
 
