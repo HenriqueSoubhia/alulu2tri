@@ -26,9 +26,9 @@
         <div class="row">
             <div class="col-md order-2">
                 <h3 class="text-center">Alterar</h3>
-                <form action="/alterar" method="POST" class="form-control">
-                    <input type="hidden" name="id_a" value="<%=id%>">
+                <form action="/alterar" method="post" class="form-control">
                     <input type="hidden" name="id_u" value="<%=id%>">
+                    <input type="hidden" name="id_a" value="<%=alterar._id%>">
                     <input type="hidden" name="nome" value="<%=nome%>">
 
                     <label for="nome" class="form-control bg-gradient-sopa">Titulo da Atividade</label>
@@ -68,7 +68,7 @@
                     <label class="form-control bg-gradient-sopa">Orientações</label>
                     <textarea name="orientacoes" class="form-control"><%=alterar.instrucoes%></textarea>
                     <div class="input-group">
-                        <input value="Voltar" class="form-control btn btn-info" onclick="history.back()">
+                        <input value="Voltar" type="button" class="form-control btn btn-info" onclick="history.back()">
                         <input type="submit" value="Alterar" class="form-control btn btn-warning">
                     </div>
                 </form>

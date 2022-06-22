@@ -45,6 +45,8 @@ module.exports = (app) => {
 
         var dadosExcluido = await atividades.find({ usuarios: user, status: "2" }).sort({ data: 1 })
 
+        console.log(dadosUser)
+
         res.render('atividades.ejs', {
             nome: dadosUser.nome,
             id: dadosUser._id,
@@ -120,6 +122,27 @@ module.exports = (app) => {
     app.post("/alterar",async(req,res)=>{
         //armazenar as infomações recebidads do formulario
         var dados = req.body
+        console.log(dados)
+
+        //visualizr os dados
+        // res.send(dados)
+
+        // atualizar o documento selecionado
+        var atualizar = await atividades.findOneAndUpdate(
+            {_id:dados.id_a},
+            {
+                data:dados.data,
+                titulo:dados.titulo,
+                tipo:dados.tipo,
+                disciplina:dados.disciplina,
+                entrega:dados.entrega,
+                instrucoes:dados.orientacoes
+            }
+        )
+        //voltar para atividades
+        res.redirect("/atividades?id="+dados.id_u)
+    
+
 
     })
 }
